@@ -1,0 +1,35 @@
+{% extends 'consultas/base.html' %}
+
+{% block content %}
+
+<h2 class="mb-4">Consultas</h2>
+
+<a href="{% url 'criar_consulta' %}" class="btn btn-primary mb-3">
+    Nova Consulta
+</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Paciente</th>
+            <th>Data</th>
+            <th>Descrição</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for consulta in consultas %}
+        <tr>
+            <td>{{ consulta.paciente }}</td>
+            <td>{{ consulta.data }}</td>
+            <td>{{ consulta.descricao }}</td>
+            <td>
+                <a href="{% url 'editar_consulta' consulta.id %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'deletar_consulta' consulta.id %}" class="btn btn-danger btn-sm">Deletar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

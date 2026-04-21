@@ -1,0 +1,31 @@
+{% extends 'consultas/base.html' %}
+
+{% block content %}
+
+<h2>Editar Consulta</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <label>Paciente</label>
+        <input type="text" name="paciente" value="{{ consulta.paciente }}" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label>Data</label>
+        <input type="datetime-local" name="data"
+               value="{{ consulta.data|date:'Y-m-d\\TH:i' }}"
+               class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label>Descrição</label>
+        <textarea name="descricao" class="form-control">{{ consulta.descricao }}</textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+
+</form>
+
+{% endblock %}
